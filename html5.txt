@@ -1,0 +1,349 @@
+html5
+
+一、新增的主体结构元素
+	1）article元素
+	article元素代表文档，页面中独立的完整的，可以独自被外部引用的内容
+
+	2）section元素
+	一个section通常由内容及标题组成，通常不推荐为那些没有标题的内容使用section，
+section的作用是对页面上的内容进行分块，或者对文章进行分段，不要与article混淆，acticle可以看做是一种特殊种类的section，比section更强调独立性
+
+	2.2）section的禁忌
+		1.不要将section作为设置样式的页面容器，那是div元素的工作
+		2.如果article，aside，nav元素更符合使用条件，不要使用section
+		3.不要为没有标题的内容区块使用section元素
+	3）nav元素
+		nav是用作页面导航的链接组
+
+	4）aside元素
+		aside元素用来表示当前页面或文章的附属信息部分，它包括当前页面或主要内容的相关的引用，侧边栏，广告，导航条，有别于主要内容
+
+二、新增的非主体结构元素
+	1）header元素
+		是一种具有引导和导航作用的结构元素，一个header元素通常包括至少一个heading元素（h1-h6）
+	
+	2）hgroup
+		是将标题以及子标题进行分组的元素，jgroup元素通常会将h1-h6元素进行分组
+
+	3）footer
+		该元素可以作为其上层父级的脚注，图作者，相关阅读链接及版权信息
+
+	4）address
+		用在文档中呈现联系信息
+
+三、h5中的表单元素
+	1）新增表单元素的属性
+	1.表单内元素的form属性
+		在h5中，可以将表单内的从属元素书写在页面上的任何地方，然后为该元素指定一个form属性，属性值为该表单的id
+	<form id="one">
+	    <input type="text">
+	</form>
+	    <textarea form="one"></textarea>
+
+	2.formaction属性
+		在h5中，可以为所有的提交按钮，诸如<input type="submit">等增加formaction属性，使单击不同的按钮时可以将表单提交到不同的页面
+		<form>
+		     <input type="submit" name="" formaction="a.action">
+		     <input type="submit" name="" formaction="b.action">
+		     <input type="submit" name="" formaction="c.action">
+		</form>
+	
+	3.formmethod属性
+		在h5中，可以使用formmethod分别指定不同的编码方式
+		<form>
+		     <input type="submit" formaction="a.action" formmethod="get">
+		</form>	
+
+	4.formenctype属性
+		在h5中，可以对多个提交按钮分别使用formtarget属性来指定提交后在何处打开所需要加载的页面。
+		_blank		在新的浏览器窗口中打开
+		_self		默认值，当前窗口中打开
+		_parent		父框架中打开
+		_top		当前浏览器窗口中打开
+		framename	指定框架中打开
+
+	5.autotarget属性
+		为文本框选择框或按钮控件加上该属性，当画面打开时，该控件自动获得焦点
+
+	7.required属性
+		在h5中，该元素可以应用在大多数元素上，在提交时，如果元素中内容为空白，则不允许提交，提示用户必须填入信息
+
+	8.control属性
+		可以在标签(label元素)内部放置一个表单元素，并且通过该标签的control属性来访问该表单元素。
+		<label for="oneip" id="one"><label>
+		<input type="text" id="oneip">
+		<script>
+		     var one = document.getElementById("one");
+		     one.control.value = "hello"
+		</script>
+	
+	9.placeholder属性
+		是指当文件框<input type="text">或者<textarea>处于未输入状态时显示输入提示。
+	
+	10.文本框的list属性
+		在h5中，可为单行本本框<input type="text">增加一个list属性，该属性为某个datalist元素的id，datalist是h5中新增的元素，该元素类似选择框，但是当用户想要设定的值不自选择列表之内时，允许自行输入，datalist元素本身并不显示，而是当文本框获取焦点以提示输入的方式显示
+		<input type="search" list="list1">
+		<datalist id="list1">
+		     <option vaule="one">one</option>
+		     <option vaule="two">two</option>
+		     <option vaule="three">threesss</option>
+		</datalist>
+
+	11.文本框的autocomplete属性
+		自动完成，该属性取值为"one/off"，当取值为on时，可以显示指定候补输入的数据列表。使用datalist元素与list属性提供候补输入的数据列表，在执行自动完成时，可以将detalist元素中的数据作为候补输入的数据在文本框中自动显示。
+
+	13.文本框的pattern属性
+		将pattern属性值设为某个格式的正则表达式，在提交时会对这些进行检查，检查其内容是否符合给定个格式
+	
+	14.type属性
+		search
+		     与text文本框类似，但是用于搜索，在ios操作系统的移动设备中，当search类型的元素获得焦点时，面板中"前往"按钮上的文字将变成"搜索"
+		tel
+		     与text文本框类似，但是用于电话
+		url
+		     与text文本框类似，但是用于url
+		email
+		     与text文本框类似，但是要求用户必须输入email格式的内容
+		datatime-local,data,month,week,time
+			日期与时间输入文本框
+		number
+			数值输入文本框
+			属性
+				min	最小值
+				max	最大值
+				step	步长，每次修改时增长的幅度
+		range
+			只允许输入一段范围内数值的文本框
+				min	用于设定最小值
+				max	用于设定最大值
+				step	每次拖动的步幅度
+		color
+			颜色选择文本框
+
+	15.表单验证
+		1.自动验证
+			<input type="text" required pattern=''/>
+		2.取消验证
+			1）form属性novalidate=true 可以关闭整个表单验证
+			2）input/submit属性formnovalidate可以关闭单个元素表单验证
+		3.显式验证
+			form与input元素都具有一个checkValidity方法，调用该方法可以显式的对表单内所有元素内容或单个元素内容进行有效性验证。
+			var email = document.getElementById("email");
+			email.checkValidity()
+
+	16.增强的页面元素
+		1.figure元素与figcaption元素
+		  figure元素是一种元素的组合，带有可选标题，figure元素用来表示网页上一块独立内容，figure元素所表示的内容可以是图片，音频，视频,figcaption表示figure,从属figure,一个figure元素内最多只允许放置一个figcaption元素
+			<figure>
+			     <img src='' alt="">
+			     <figcaption>标题</figcaption>
+			</figure>
+		
+		2.details元素与summary元素
+		  details元素是一种用于标识该元素内部的子元素可以被展开，收缩的元素。该元素具有一个布尔类型的open属性，当该属性为true，元素内部的子元素应该被展开显示；当该属性的值为false，其内部的子元素应该被收缩起来不显示，默认值为false。
+		  summary元素从属于details，用鼠标单击summary元素中的内容，details元素中的其他所有从属元素将会展开或收缩。
+
+		3.mark元素
+		   mark元素表示页面中需要突出显示或高亮显示的。
+
+		4.新增的progress元素
+		   progress元素答辩一个任务的完成进度，这个进度可以是不确定的，表示进度正在进行，用0到100之间的数字来表示准确的进度完成情况
+			vaule		表示已经完成了多少工作量，0<value<=max
+			max		表示总共有多少工作量
+		
+		5.新增的meter元素
+		   meter元素表示规定范围内的数量值
+			value		在元素中特地表示出来的实际值
+			min		指定规定范围时允许使用的最小值，默认为0
+			max		指定规定范围时允许使用的最大值，默认为1
+			low		规定范围的下限值，必须小于或等于high属性的值
+			high		规定范围的上限值
+			optimum		最佳值
+		
+		6.改良的ol列表
+			添加了start属性和reversed属性
+			start		自定义开始编号
+			reversed	反向编号
+			<ol start=5 reversed>
+			     <li>内容1</li>
+			     <li>内容2</li>
+			</ol>
+
+		7.改良的dl列表
+			重新定义的dl列表包含多个带有名字的列表项。每一天包含一条或多条带名字的dt元素，用来表示术语，dt元素后面紧跟着一个或多个dd元素，用来表示定义
+			<dl>
+			     <dt>RRS</dt>
+			     <dd>rrs也叫聚合RRS，是在线共享内容的一种简易方式</dd>
+			     <dt>博客</dt>
+			     <dd>博客是。。。</dd>
+			</dl>
+
+		8.加以严格限制的cite元素
+		    cite元素表示作品的标题
+	
+		9.重新定义的small元素
+		    通常用在诸如免责声明，注意事项
+		
+		10.安全性增强的iframe元素
+			h5为iframe增加了一个sandbox属性，其作用是处于安全性，对iframe内的元素的内容是否允许显示，表单是否允许被提交以及脚本是否允许被执行进行限制
+			1) allow-forms		
+					允许iframe页面中的表单进行提交
+				2) allow-scripts
+					允许执行iframe页面中的JavaScript脚本代码	
+				3) allow-same-origin
+					当不对iframe元素使用sandbox属性时，该元素中的页面被视为与使用该iframe元素的页面来自同一个源（即使来自不同的源），允许iframe元素中的页面加载其来自服务器端的内容，允许在iframe元素所显示页面的脚本内部与服务器端进行交互，允许在iframe元素所显示的页面中加载来自cookies或者WebStorage中的内容。
+
+					对iframe元素使用sandbox属性后，iframe元素中所显示的页面被视为来自一个单独的源（即使来自同一个）禁止上述提到的行为。
+
+					当sandbox="allow-same-origin" 将iframe元素中的页面视为与使用该iframe元素的页面来自同一个源。通常allow-scripts，allow-same-origin连用表示在iframe元素所显示的页面中使用JavaScript脚本读取cookies或Web Storage中的内容。
+
+				4) allow-top-navigation	
+					当对iframe元素使用sandbox属性时，如果iframe元素内的页面中具有一个超链接，且单击该超链接将把浏览器窗口或iframe元素之外任何区域导航到新的内容，那么禁止该超链接
+					可以通过sandbox="allow-top-navigation"使得超链接变得有效。
+
+
+四、Canvas绘图
+1.介绍:canvas在页面设定一个区域，然后就可以通过js动态的在这个区域中绘制图形
+
+2.基本用法
+	<canvas id="drawing" width="400" height="400"></canvas>
+	浏览器不支持canvas,位于canvas标签内的内容是后备信息，如果浏览器不支持canvas，会显示这些内容
+	width	设定绘图区域的宽
+	height	设定绘图区域的高
+	toDateURL()  使用该方法可以导出在canvas上绘制的图像
+
+用canvas元素绘制图形时，需要经过几道步骤:
+1) 取得canvas对象
+	通过document.getElementById()等方法取得canva对象。
+2) 取得上下文*(context)
+	图形上下文是一个封装了很多绘图功能的对象。参数是"2d"
+	var context = one.getContext("2d");
+3) 填充与绘制边框
+	使用canvas元素绘制图形的时候，有两种方式：填充与绘制边框。填充是指填满图形内部；绘制边框是指不填充图形的内部，只绘制图形的边框。
+4) 设定绘图样式	
+	在进行图形绘制的时候，首先要设定好绘图的样式，然后调用有关方法进行图形的绘制，所谓绘图的样式，主要是针对图形的颜色而言的
+	fillStyle	填充的样式
+	strokeStyle	图形边框的样式
+5) 指定线宽
+	使用图形上下文对象lineWidth属性设置图形边框的宽度
+6) 绘制矩形
+	分别使用fileRect方法与strokeRect方法来填充矩形和绘制矩形边框
+	context.fillRect(x,y,width,height);
+	contexxt.strokeRect(x,y,width,height);
+
+
+实例
+	//获取canvas对象
+	var basic = document.getElement.getElementById("basic");
+	//获取2d绘图上下文
+	var context = basic.getContext("2d");
+	//设定填充颜色
+	context.fillStyle = "#eeeccc";
+	context.strokeStyle = "#CCCEEE";
+	//绘制-填充
+	context.fillRect(20,200,60,-100);
+	context.fillRect(100,200,60,-140);
+	context.fillRect(180,200,60,-80);
+	//绘制-绘制线条
+	context.strokeRect(50,50,100,100);
+
+3.2D上下文
+	使用2D上下文提供的方法，可以绘制简单的2d图形，比如矩形，2d上下文的坐标位于canvas元素的左上角，原点坐标是(0,0)
+	
+	1）填充和描边
+	var context = one.getContext("2d");//获取上下文
+	context.strokeStyle = "red";//填充
+	context.fillStyle = "#ccc"; //描边
+	2）绘制矩形
+	矩形是唯一一种可以直接在2D上下文中绘制的形状
+	fillRect();	绘制矩形
+	strokeRect();	绘制矩形框
+	clearRect();	清楚画布中的矩形框
+	这三个方法都能接受4个参数，矩形的X坐标，Y坐标，宽度，高度，这些参数的单位都是像素
+	3）绘制路径
+	1.绘制圆形
+		1）开始创建路径
+		   context.beginPath();
+		2）创建路径
+		   context.arc(x,y,radius,startAngle,endAngle,counterlockwise)
+			x	为绘制圆形的起点横坐标
+			y	为绘制圆形的起点纵坐标
+			radius  表示弧线的半径
+			startAngle  起始角度
+			endAngle    结束角度
+			anticlockwise  是否按顺时针方向进行绘制，true为顺时针
+			
+			Math.PI    表示的角度为180度
+			Math.PI*2  表示的角度为360度
+	
+		3）关闭路径
+		   context.closePath();
+		   将路径关闭后，路径的创建工作就完成了
+		4）设定绘制样式，进行图形绘制
+		   context.fill(); //填充图形
+		   context.stroke();//绘制图形边框
+		实例
+			var line = doucement.getElementById("line");
+			var contexts = line.getContext("2d");
+			context.fillStyle = "#dddddd";
+			context.beginPath();
+			context.arc(100,100,50,Math.PI*2,true);
+			context.closePath();
+			context.stroke();
+	
+	2.绘制直线
+		1）moveTo(x,y)
+		   将光标移动到指定坐标点，绘制直线的时候以这个坐标点为起点
+		2）lineTo(x,y)
+		   表示直线的终点。X，Y为终点的坐标位置
+	
+	3.绘制贝济埃曲线
+		bezierCurveTo(c1x,c1y,c2x,c2y,x,y)
+		从上一点开始绘制一条曲线，到(x,y)为止，并且以(c1x,c1y)和(c2x,c2y)为控制点
+		quadraticCurveTo(cx,cy,x,y)
+		从上一点开始绘制一条二次曲线，到(x,y)为止，并且以(cx,cy作为控制点)
+	
+	4）绘制渐变图形
+		
+		1.线性渐变
+			var gradient = createLinearGradient(xstart,ystart,xend,yend)
+			参数:
+			    xstart  渐变起点横坐标
+			    ystart  渐变起点纵坐标
+			    xend    渐变终点横坐标
+			    yend    渐变终点纵坐标
+			返回值:
+			    CanvasGradient
+			gradient.addColorStop(offset,color);
+			    参数:
+				offset  为所设定的颜色离开渐变起点的偏移量，该参数的值是一个范围在0-1之间的浮点值，渐变起始点的偏移量是0，渐变的结束点的偏移量为1。
+			
+实例
+			var gradient = context.createLinearGradient(200,200,200,0);
+			gradient.addColorStop(0,"#fff");
+			gradient.addColorStop(1,"#eeeccc");
+	
+		2.径向渐变
+			径向渐变是指沿着圆形的半径方向向外进行扩张的渐变方式
+			context.createRedialGradient(xstart,ystart,radiusStart,xend,yend,radiusend)
+			参数:
+			    前三个参数:圆的圆心(x,y)和半径
+			    后三个参数:终点圆的圆心(x,y),以及半径
+			如果想从某个形状的中心点开始创建一个向外扩散的径向渐变的效果，就要将两个圆定义为同心圆。
+	
+	5）绘制变形图形
+		1.坐标变换
+		1.平移
+		     context.translate(x,y)
+			参数x为坐标原点向右移动的单位，参数y为坐标原点向下移动的单位
+		2.扩大
+		     context,scale(x,y)
+			参数x为水平方向的放大倍数，参数y为坐标原点向下移动的单位
+		3.旋转
+		     rotate(angle)
+			angle是指旋转的角度
+		4.状态的保存与恢复
+		     save（）
+			保存当前的绘图状态。
+			
+			
